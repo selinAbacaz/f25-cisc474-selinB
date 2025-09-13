@@ -2,7 +2,7 @@
 
 [SiteMap.png](https://github.com/selinAbacaz/f25-cisc474-selinB/blob/9d6ff0bd220ed3d4b286f677c3a4ecd5d6dda0b8/apps/docs/public/PlanningFiles/SiteMap.png)
 
-[userStories.md](https://github.com/selinAbacaz/f25-cisc474-selinB/blob/9d6ff0bd220ed3d4b286f677c3a4ecd5d6dda0b8/apps/docs/public/PlanningFiles/userStories.md)
+[userStories.md](https://github.com/selinAbacaz/f25-cisc474-selinB/blob/896bb6a723431ac5da37020f9c61d3b780694f93/apps/docs/public/PlanningFiles/userStories.md)
 
 All WireFrames:
 
