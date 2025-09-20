@@ -1,0 +1,42 @@
+{
+  "users": [
+    {
+      "id": 1, "email": "alice@example.com", "Firstname": "Alice", "Lastname": "Johnson", "role": "USER", "pronouns": "she/her"},
+    { "id": 2, "email": "bob@example.com", "Firstname": "Bob", "Lastname": "Smith", "role": "ADMIN", "pronouns": "he/him" },
+    { "id": 3, "email": "charlie@example.com", "Firstname": "Charlie", "Lastname": "Lee", "role": "USER", "pronouns": "they/them" },
+    { "id": 4, "email": "selly@example.com", "Firstname": "Selly", "Lastname": "Brown", "role": "USER", "pronouns": "she/they" },
+    { "id": 5, "email": "victiria@gmail.com", "Firstname": "Victoria", "Lastname": "Green", "role": "ADMIN", "pronouns": "she/her" }
+  ],
+  "profiles": [
+    { "id": 1, "bio": "Computer science major interested in AI.", "userId": 1},
+    {  "id": 2, "bio": "Professor of databases and systems.",  "userId": 2 },
+    {  "id": 3, "bio": "Web developer and designer.",  "userId": 3 },
+    {  "id": 4, "bio": "Loves hiking and outdoor adventures.",  "userId": 4 },
+    {  "id": 5, "bio": "Enjoys teaching and mentoring students.",  "userId": 5 }
+  ],
+  "courses": [
+    { "id": 1, "name": "Intro to Databases", "assignmentId": 1},
+    { "id": 2, "name": "Web Development", "assignmentId": 2 },
+    {  "id": 3,  "name": "Algorithms 101",  "assignmentId": 3},
+    { "id": 4, "name": "Operating Systems", "assignmentId": 4},
+    {"id": 5,"name": "Software Engineering","assignmentId": 5}
+  ],
+  "assignments": [
+    {
+      "id": 1, "createdAt": "2025-09-01T10:00:00.000Z", "updatedAt": "2025-09-01T10:00:00.000Z", "title": "SQL Basics Homework", "published": true, "authorId": 2, "fileType": "pdf", "courseId": 1 },
+    {"id": 2,"createdAt": "2025-09-05T09:30:00.000Z","updatedAt": "2025-09-05T09:30:00.000Z","title": "HTML & CSS Project","published": false,"authorId": 2,"fileType": "zip","courseId": 2},
+    { "id": 3, "createdAt": "2025-09-07T15:45:00.000Z", "updatedAt": "2025-09-07T15:45:00.000Z", "title": "Sorting Algorithms Report", "published": true, "authorId": 2, "fileType": "docx", "courseId": 3 },
+    {  "id": 4, "createdAt": "2025-09-09T11:00:00.000Z", "updatedAt": "2025-09-09T11:00:00.000Z", "title": "Process Scheduling Homework", "published": true, "authorId": 2, "fileType": "pdf","courseId": 4 },
+    { "id": 5, "createdAt": "2025-09-12T13:20:00.000Z", "updatedAt": "2025-09-12T13:20:00.000Z", "title": "Agile Development Case Study", "published": false, "authorId": 2, "fileType": "pptx","courseId": 5  }
+  ],
+  "submissions": [
+    { "id": 1, "submittedAt": "2025-09-10T14:20:00.000Z", "fileName": "alice-sql-homework.pdf", "authorId": 1, "assignmentId": 1  },
+    {"id": 2,"submittedAt": "2025-09-12T16:45:00.000Z","fileName": "charlie-html-css.zip","authorId": 3,"assignmentId": 2},
+    {"id": 3,"submittedAt": "2025-09-13T09:10:00.000Z","fileName": "alice-sorting-report.docx","authorId": 1,"assignmentId": 3 },
+    {"id": 4,"submittedAt": "2025-09-14T11:30:00.000Z","fileName": "charlie-sorting-report.docx","authorId": 3,"assignmentId": 3  },
+    { "id": 5, "submittedAt": "2025-09-15T15:00:00.000Z", "fileName": "alice-os-homework.pdf", "authorId": 1, "assignmentId": 4 },
+    { "id": 6, "submittedAt": "2025-09-16T17:25:00.000Z", "fileName": "charlie-os-homework.pdf", "authorId": 3, "assignmentId": 4 },
+    { "id": 7, "submittedAt": "2025-09-17T20:40:00.000Z", "fileName": "alice-agile-case-study.pptx", "authorId": 1, "assignmentId": 5 },
+    { "id": 8, "submittedAt": "2025-09-18T13:15:00.000Z", "fileName": "charlie-agile-case-study.pptx", "authorId": 3, "assignmentId": 5 }
+  ]
+}

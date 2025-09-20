@@ -1,0 +1,9 @@
+id,submittedAt,fileName,authorId,assignmentId
+1,2025-09-10 14:20:00,alice-sql-homework.pdf,1,1
+2,2025-09-12 16:45:00,charlie-html-css.zip,3,2
+3,2025-09-13 09:10:00,alice-sorting-report.docx,1,3
+4,2025-09-14 11:30:00,charlie-sorting-report.docx,3,3
+5,2025-09-15 15:00:00,alice-os-homework.pdf,1,4
+6,2025-09-16 17:25:00,charlie-os-homework.pdf,3,4
+7,2025-09-17 20:40:00,alice-agile-case-study.pptx,1,5
+8,2025-09-18 13:15:00,charlie-agile-case-study.pptx,3,5

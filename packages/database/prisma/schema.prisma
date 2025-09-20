@@ -20,6 +20,10 @@ model User {
   role      Role     @default(USER)
   pronouns  String
   Profile   Profile?
+
+  submission submission[]
+
+  assignment assignment[]
 }
 
 model Profile {
@@ -37,8 +41,7 @@ enum Role {
 model course {
   id            Int    @id @default(autoincrement())
   name          String
-  assignment    assignment? 
-  assignmentId  Int 
+  assignment    assignment[]
   
 
 }
@@ -52,16 +55,22 @@ model assignment {
   author     User       @relation(fields: [authorId], references: [id])
   authorId   Int
   fileType   String
-  course     String
-  
+  course course @relation(fields: [courseId], references: [id])
+  courseId   Int
+  submission submission[]
+
+
 }
 
 model submission{
-  id            int       @id @default(autoincrement())
+  id            Int       @id @default(autoincrement())
   submittedAt   DateTime  @default(now())
-  resubmittedAt DateTime  @resubmittedAt
   fileName      String
   submitter     User      @relation(fields: [authorId], references: [id])
+  authorId      Int
+  assignment    assignment @relation(fields: [assignmentId], references: [id])
+  assignmentId  Int
+  
 
 
 }
