@@ -16,11 +16,13 @@ export default function Home() {
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between"}}>
                         <h1 style={{ fontSize: "36px", color: "white" }}>Something something</h1>
                         <Image
-                            src="/images/chihiro.jpg"
+                            src="/Images/chihiro.jpg"
                             alt="Profile Picture"
-                            width={60}
-                            height={60}
-                            style={{ borderRadius: "50%" }}
+                            width={90}
+                            height={90}
+                            style={{ borderRadius: "50%", objectFit: "cover"}}
+
+                            
                         ></Image>
                     </div>
                 </header>

@@ -8,7 +8,7 @@
   padding: 0 0 20px 0;  /* fallback */
   position: relative;
   white-space: nowrap;
-  width: 800px;
+  width: 100%;
 }
 
 /* fallback overdrive */
@@ -18,7 +18,7 @@ head ~ body:nth-of-type(1):nth-last-of-type(1) .pagedImages {
 }
 
 .pagedImages > ul {
-  background: #000;
+  background: #e381816d;
   display: inline-block;
   line-height: 200px;
   margin: 0;
@@ -72,7 +72,7 @@ head ~ body:nth-of-type(1):nth-last-of-type(1) .pagedImages {
 }
 
 .pagedImages > label {
-  background: rgba(0, 0, 0, .6);
+  background: rgba(173, 102, 102, 0.6);
   color: #FFF;
   cursor: pointer;
   display: block;
@@ -90,7 +90,7 @@ head ~ body:nth-of-type(1):nth-last-of-type(1) .pagedImages {
 
 .pagedImages > label:hover {
   background: #FFF;
-  color: #000;
+  color: #bf6e6e65;
 }
 
 .pagedImages > label:before {
@@ -123,7 +123,7 @@ head ~ body:nth-of-type(1):nth-last-of-type(1) .pagedImages {
 .pagedImages > input:nth-of-type(8):checked ~ label:nth-of-type(7),
 .pagedImages > input:nth-of-type(9):checked ~ label:nth-of-type(8) {
   left: 0;
-  border-right: 1px solid rgba(0, 0, 0, .5);
+  border-right: 1px solid rgba(180, 103, 103, 0.5);
   visibility: visible;
 }
 
@@ -136,7 +136,7 @@ head ~ body:nth-of-type(1):nth-last-of-type(1) .pagedImages {
 .pagedImages > input:nth-of-type(7):checked ~ label:nth-of-type(6):before,
 .pagedImages > input:nth-of-type(8):checked ~ label:nth-of-type(7):before,
 .pagedImages > input:nth-of-type(9):checked ~ label:nth-of-type(8):before {
-  content: '◀';
+  content: '<';
 }
 
 .pagedImages > input:nth-of-type(1):checked ~ label:nth-of-type(2),
@@ -148,7 +148,7 @@ head ~ body:nth-of-type(1):nth-last-of-type(1) .pagedImages {
 .pagedImages > input:nth-of-type(7):checked ~ label:nth-of-type(8),
 .pagedImages > input:nth-of-type(8):checked ~ label:nth-of-type(9),
 .pagedImages > input:nth-last-of-type(1):checked ~ label:nth-of-type(1) {
-  border-left: 1px solid rgba(0, 0, 0, .5);
+  border-left: 1px solid rgba(178, 89, 89, 0.5);
   right: 0;
   visibility: visible;
 }
@@ -162,11 +162,11 @@ head ~ body:nth-of-type(1):nth-last-of-type(1) .pagedImages {
 .pagedImages > input:nth-of-type(7):checked ~ label:nth-of-type(8):before,
 .pagedImages > input:nth-of-type(8):checked ~ label:nth-of-type(9):before,
 .pagedImages > input:nth-last-of-type(1):checked ~ label:nth-of-type(1):before {
-  content: '▶';
+  content: '>';
 }
 
 .pagedImages > ul > li:target {
-  background: rgba(0, 0, 0, .8);
+  background: rgba(239, 175, 175, 0.285);
   cursor: default;
   height: 100%;
   font-size: 12pt;
