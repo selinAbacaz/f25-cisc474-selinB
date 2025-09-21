@@ -13,7 +13,7 @@ export function SideGallery() {
 
         
         
- <section className="pagedImages">
+ <section className="pagedImages" style={{alignContent: "center", justifyContent: "center", alignItems: "center", marginLeft: "10px", marginRight: "10px"}}>
       <input id="page1" accessKey="1" type="radio" name="pagedImages1" title="Images page 1" checked={true} />
       <input id="page2" accessKey="2" type="radio" name="pagedImages1" title="Images page 2" />
       <input id="page3" accessKey="3" type="radio" name="pagedImages1" title="Images page 3" />
@@ -29,26 +29,31 @@ export function SideGallery() {
             <p><a href="#">Close</a></p>
           </article>
         </li>
-        <li id="image2">
-          <button
-              type="button"
-              ref={btnRef}
-              id="btnID"
-              style={{
-                fontSize: "30px",
-                textAlign: "center",
-                justifyContent: "center",
-                display: "inline-block",
-                position: "relative",
-                padding: "10px",
-                borderRadius: "5px",
-                backgroundColor: "#815656",
-                color: "white",
-                border: "none",
-                cursor: "pointer",
-              }}
-            ><Link href="courses/compsciClass">compsci</Link>
-            </button>
+        <li id="image2" >
+            
+            <Link href="courses/compsciClass">
+                <button
+                    type="button"
+                    ref={btnRef}
+                    id="btnID"
+                    style={{
+                    fontSize: "30px",
+                    textAlign: "center",
+                    justifyContent: "center",
+                    position: "relative",
+                    padding: "10px",
+                    borderRadius: "5px",
+                    backgroundColor: "#815656",
+                    color: "white",
+                    border: "none",
+                    cursor: "pointer",
+                    width: "20vh",
+                    height: "20vh",
+                    }}
+                >
+                    compsci
+                </button>
+            </Link>
           <article>
             <h3>Image 2</h3>
             <p>Have here whatever you like.</p>

@@ -21,16 +21,17 @@ export function SidePanel() {
                     marginLeft: collapsed ? "-340px" : "0",
                     transition: "margin-left 0.3s",
                     
+                    
                 }}
             >
-                <div>
-                    <button><Link href="/dashboard">Dashboard</Link></button>
+                <div style={{ padding: "50px"}}>
+                    <button style={{marginBottom: "20px"}}><Link href="/dashboard">Dashboard</Link></button>
                     <br></br>
-                    <button><Link href="/"> Home </Link></button>
+                    <button style={{marginBottom: "20px"}}><Link href="/"> Home </Link></button>
                     <br></br>
-                    <button><Link href="/courses">Courses</Link></button>
+                    <button style={{marginBottom: "20px"}}><Link href="/courses">Courses</Link></button>
                     <br></br>
-                    <button><Link href="/gradePage"> Grades </Link></button>
+                    <button style={{marginBottom: "20px"}}><Link href="/gradePage"> Grades </Link></button>
                     <br></br>
 
                 </div>

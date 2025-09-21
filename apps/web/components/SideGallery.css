@@ -1,8 +1,7 @@
 .pagedImages {
-  border: 2px solid #CCC;
+  border: 2px solid #815656;
   font-size: .1px;
   height: 200px;
-  margin: 0;
   overflow-x: auto; /* fallback for IE8 and other browsers that do not support new CSS3 selectors */
   overflow-y: hidden; /* fallback */
   padding: 0 0 20px 0;  /* fallback */
@@ -21,8 +20,6 @@ head ~ body:nth-of-type(1):nth-last-of-type(1) .pagedImages {
   background: #e381816d;
   display: inline-block;
   line-height: 200px;
-  margin: 0;
-  padding: 0;
   text-align: center;
   -webkit-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out;
