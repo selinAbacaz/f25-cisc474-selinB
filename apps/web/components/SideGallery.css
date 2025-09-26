@@ -18,8 +18,10 @@ head ~ body:nth-of-type(1):nth-last-of-type(1) .pagedImages {
 
 .pagedImages > ul {
   background: #e381816d;
+  border-top: #e381816d 6px solid;
+  border-bottom: #e381816d 6px solid;
   display: inline-block;
-  line-height: 200px;
+  line-height: 100%;
   text-align: center;
   -webkit-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out;

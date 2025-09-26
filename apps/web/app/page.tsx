@@ -16,7 +16,7 @@ export default function Home() {
             <SidePanel></SidePanel>
 
             <section>
-                <header className="flex-row" style={{minHeight: "80px", backgroundColor: "#815656",alignContent: "center"}}>
+                <header className="flex-row" style={{minHeight: "80px", backgroundColor: "#815656",alignContent: "center", }}>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", alignContent: "center"}}>
                         <h1 style={{ fontSize: "36px", color: "white" }}>Something something</h1>
                         <div style={{minHeight: "60px", minWidth: "60px",backgroundImage: "url(/Images/chihiro.jpg)" ,backgroundSize:"cover",display:"flex", marginRight:"2%", borderRadius:"100%" }}></div>
@@ -31,7 +31,7 @@ export default function Home() {
                 {/* Content boxes with courses, announcements and assignments with duedates*/}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginLeft: "30px", marginRight: "20px" }}>
                     <div style={{ display: "flex", flexDirection: "column", width: "76%" }}>
-                        <div style={{ textAlign: "center",flexDirection:"row", padding: "10px", borderBottom: "2px solid #815656",borderTop: "none"}}>
+                        <div style={{ textAlign: "center",flexDirection:"row", borderBottom: "2px solid #815656", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}>
                             {/*<h1 style={{ fontSize: "50px", color: "#815656" }}></h1>*/}
                             <SideGallery></SideGallery>
                         </div>

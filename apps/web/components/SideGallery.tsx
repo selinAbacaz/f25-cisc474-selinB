@@ -13,7 +13,7 @@ export function SideGallery() {
 
         
         
- <section className="pagedImages" style={{alignContent: "center", justifyContent: "center", alignItems: "center", marginLeft: "10px", marginRight: "10px"}}>
+ <section className="pagedImages" style={{alignContent: "center", justifyContent: "center", alignItems: "center", width: "100%"}}>
       <input id="page1" accessKey="1" type="radio" name="pagedImages1" title="Images page 1" checked={true} />
       <input id="page2" accessKey="2" type="radio" name="pagedImages1" title="Images page 2" />
       <input id="page3" accessKey="3" type="radio" name="pagedImages1" title="Images page 3" />

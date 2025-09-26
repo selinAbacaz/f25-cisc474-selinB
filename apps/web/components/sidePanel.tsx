@@ -25,6 +25,10 @@ export function SidePanel() {
                 }}
             >
                 <div style={{ padding: "50px"}}>
+                    <h3 style={{textAlign: "left", fontSize: "20px"}}>Welcome,</h3>
+                    <h2 style={{textAlign: "left",fontSize:"30px", marginBottom: "10px"}}>Selin Bacaz ! ✩</h2>
+                    <hr style={{backgroundColor: "#f8d8d1", border:"1px solid #f8d8d1"}}></hr>
+                    <br></br>
                     <button style={{marginBottom: "20px"}}><Link href="/dashboard">Dashboard</Link></button>
                     <br></br>
                     <button style={{marginBottom: "20px"}}><Link href="/"> Home </Link></button>
