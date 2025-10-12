@@ -1,8 +1,7 @@
-"use client";
-
-import React, { ReactNode, useRef, useState } from "react";
+import { useState } from "react";
 import "./sidePanel.css";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
+
 
 
 export function SidePanel() {
@@ -29,13 +28,13 @@ export function SidePanel() {
                     <h2 style={{textAlign: "left",fontSize:"30px", marginBottom: "10px"}}>Selin Bacaz ! ✩</h2>
                     <hr style={{backgroundColor: "#f8d8d1", border:"1px solid #f8d8d1"}}></hr>
                     <br></br>
-                    <button style={{marginBottom: "20px"}}><Link href="/dashboard">Dashboard</Link></button>
+                    <button style={{marginBottom: "20px"}}><Link to="/dashboard">Dashboard</Link></button>
                     <br></br>
-                    <button style={{marginBottom: "20px"}}><Link href="/"> Home </Link></button>
+                    <button style={{marginBottom: "20px"}}><Link to="/"> Home </Link></button>
                     <br></br>
-                    <button style={{marginBottom: "20px"}}><Link href="/courses">Courses</Link></button>
+                    <button style={{marginBottom: "20px"}}><Link to="/courses">Courses</Link></button>
                     <br></br>
-                    <button style={{marginBottom: "20px"}}><Link href="/gradePage"> Grades </Link></button>
+                    <button style={{marginBottom: "20px"}}><Link to="/gradePage"> Grades </Link></button>
                     <br></br>
 
                 </div>
@@ -58,7 +57,7 @@ export function SidePanel() {
                     height: "40px",
                     borderRadius: "50%",
                 }}
-                onClick={() => setCollapsed((c) => !c)}
+                onClick={() => setCollapsed((c: boolean) => !c)}
             >
                 {/* White arrow using SVG */}
                 {collapsed ? (
