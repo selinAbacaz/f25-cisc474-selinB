@@ -1,15 +1,12 @@
-"use client";
-import React, { useRef } from "react";
-import { SidePanel } from "../../components/sidePanel";
-import Link from "next/link";
-import { link } from "fs";
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { useRef } from 'react';
+import { SidePanel } from '../components/sidePanel';
 
-// If using Next.js, use next/head for <Head> and next/script for scripts
-// import Head from "next/head";
-// import Script from "next/script";
+export const Route = createFileRoute('/courses')({
+  component: RouteComponent,
+})
 
-export default function DashboardPage() {
-  const imageRef = useRef<HTMLImageElement>(null);
+function RouteComponent() {
   const btnRef = useRef<HTMLButtonElement>(null);
 
 
@@ -109,7 +106,9 @@ export default function DashboardPage() {
               flexDirection: "column",
             }}
           >
-            <img id="image" ref={imageRef} src="" alt="" />
+            <div style= {{fontSize:"40px", color: "#815656"}}> these buttons dont actually work yet </div>
+            <br></br>
+            
             <button
               type="button"
               ref={btnRef}
@@ -128,7 +127,7 @@ export default function DashboardPage() {
                 border: "none",
                 cursor: "pointer",
               }}
-            ><Link href="courses/compsciClass">compsci</Link>
+            ><Link to={'/courses'}>compsci</Link>
             </button>
             <button
               type="button"
@@ -148,7 +147,7 @@ export default function DashboardPage() {
                 border: "none",
                 cursor: "pointer",
               }}
-            ><Link href="courses/artClass">art</Link>
+            ><Link href="courses/artClass" to={'/courses'}>art</Link>
             </button>
           </div>
         </div>
