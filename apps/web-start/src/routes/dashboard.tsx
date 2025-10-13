@@ -1,12 +1,38 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { SidePanel } from '../components/sidePanel';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { backendFetcher } from '../integrations/fetcher';
+
+interface Assignment {
+  id: number;
+  courseID: number;
+  authorId: number;
+  createdAt: string;
+  fileType: string;
+  published: boolean;
+  title: string;
+  updatedAt: string;
+}
+
 
 
 export const Route = createFileRoute('/dashboard')({
   component: RouteComponent,
+  loader: ({ context: { queryClient } }) =>
+    queryClient.ensureQueryData(assignmentsQueryOptions),
 });
 
+const assignmentsQueryOptions = {
+  queryKey: ['assignments'],
+  queryFn: backendFetcher<Array< Assignment >>('/assignments'),
+  initialData: [],
+};
+
+
 function RouteComponent() {
+
+    const { data, refetch, error, isFetching } = useQuery(assignmentsQueryOptions);
+
    
    return (
            <>
@@ -32,8 +58,28 @@ function RouteComponent() {
                            <div style={{ textAlign: "center", backgroundColor: "#f89dac", padding: "10px", height: "100vh" }}>
                                <h1 style={{ fontSize: "50px", color: "#815656" }}> Gonna add assignment lines here</h1>
                                <p style={{ fontSize: "20px", color: "#815656" }}>gonna add assignment due dates here</p>
-                           </div>
-                       </div>
+                               <article style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'stretch', marginTop: '20px' }}>
+                                    {data.map((assignment) => (
+                                        <div
+                                          key={assignment.id}
+                                          style={{
+                                            border: '2px solid #815656',
+                                            backgroundColor:"#f8d8d1",
+                                            padding: '16px',
+                                            borderRadius: '4px',
+                                            textAlign: 'left',
+                                            boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
+                                          }}
+                                        >
+                                          <h3 style={{ margin: 0, fontSize: '20px', color: '#815656' }}>{assignment.title ?? 'Untitled'}</h3>
+                                            <p style={{ margin: '8px 0 0', color: '#815656' }}>Last updated: {new Date(assignment.updatedAt).toString()}</p> 
+                                        </div>
+
+                                    ))}
+                                </article>
+                            
+                        </div>
+                    </div>
    
    
                        {/* Email and notification box */}

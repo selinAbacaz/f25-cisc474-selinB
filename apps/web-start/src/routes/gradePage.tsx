@@ -9,6 +9,8 @@ export const Route = createFileRoute('/gradePage')({
 
 function RouteComponent() {
    
+
+    
    return (
            <>
                <SidePanel></SidePanel>

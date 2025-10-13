@@ -34,7 +34,12 @@ function RouteComponent() {
                             <SideGallery></SideGallery>
                         </div>
                         <div style={{ textAlign: "center", backgroundColor: "#f89dac", padding: "10px", height: "100vh" }}>
-                            <h1 style={{ fontSize: "50px", color: "#815656" }}> Gonna add assignment lines here</h1>
+                          <h1 style={{ fontSize: "50px", color: "#815656", border: "2px solid #815656", backgroundColor:"#f8d8d16d", padding: "16px", borderRadius: "4px", textAlign: "left", boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
+                           }}> Hello grader !! The data ive fetched from my backend is in the dashboard and courses page !
+                              available via the sidepanel on the left !!
+
+                          </h1>
+                            <h1 style={{ fontSize: "22px", color: "#815656" }}> Gonna add assignments due within a week here</h1>
                             <p style={{ fontSize: "20px", color: "#815656" }}>gonna add assignment due dates here</p>
                         </div>
                     </div>

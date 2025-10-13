@@ -1,157 +1,102 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { useRef } from 'react';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { SidePanel } from '../components/sidePanel';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { backendFetcher } from '../integrations/fetcher';
+
+interface Course {
+  id: number;
+  name: string;
+}
+
+
 
 export const Route = createFileRoute('/courses')({
   component: RouteComponent,
-})
+  loader: ({ context: { queryClient } }) =>
+    queryClient.ensureQueryData(coursesQueryOptions),
+});
+
+const coursesQueryOptions = {
+  queryKey: ['courses'],
+  queryFn: backendFetcher<Array< Course >>('/courses'),
+  initialData: [],
+};
+
 
 function RouteComponent() {
-  const btnRef = useRef<HTMLButtonElement>(null);
 
+    const { data, refetch, error, isFetching } = useQuery(coursesQueryOptions);
 
+   
+   return (
+           <>
+               <SidePanel></SidePanel>
+   
+               <section>
+                   <header className="flex-row" style={{minHeight: "80px", backgroundColor: "#815656",alignContent: "center", }}>
+                       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", alignContent: "center"}}>
+                           <h1 style={{ fontSize: "36px", color: "white" }}>Something something</h1>
+                           <div style={{minHeight: "60px", minWidth: "60px",backgroundImage: "url(/Images/chihiro.jpg)" ,backgroundSize:"cover",display:"flex", marginRight:"2%", borderRadius:"100%" }}></div>
+                           
+                       </div>
+                   </header>
+   
+   
+               </section>
+   
+               <section>
+                   {/* Content boxes with courses, announcements and assignments with duedates*/}
+                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginLeft: "30px", marginRight: "20px" }}>
+                       <div style={{ display: "flex", flexDirection: "column", width: "76%" }}>
+                           
+                           <div style={{ textAlign: "center", backgroundColor: "#f89dac", padding: "10px", height: "100vh" }}>
+                               <h1 style={{ fontSize: "50px", color: "#815656" }}> Gonna add assignment lines here</h1>
+                               <p style={{ fontSize: "20px", color: "#815656" }}>gonna add assignment due dates here</p>
+                               <article style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'stretch', marginTop: '20px' }}>
+                                    {data.map((course) => (
+                                        <div
+                                          key={course.id}
+                                          style={{
+                                            border: '2px solid #815656',
+                                            backgroundColor:"#f8d8d1",
+                                            padding: '16px',
+                                            borderRadius: '4px',
+                                            textAlign: 'left',
+                                            boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
+                                          }}
+                                        >
+                                          <h3 style={{ margin: 0, fontSize: '20px', color: '#815656' }}>{course.name ?? 'Untitled'}</h3>
+                                            
+                                        </div>
 
-  return (
-    <>
-      {/* If using Next.js, move these to _app.tsx or use <Head> */}
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-      />
-      <link rel="stylesheet" href="index.css" />
-
-      <div
-        style={{
-          backgroundColor: "#604444ff",
-          minHeight: "100vh",
-          position: "relative",
-          overflowX: "hidden",
-        }}
-      >
-        <SidePanel >
-        </SidePanel>
-
-        {/* Main content */}
-        <div style={{ width: "80%", margin: "0 auto" }}>
-          <div
-            style={{
-              marginBottom: 0,
-              backgroundColor: "#f89dac",
-              border: "8px solid #815656",
-              justifyContent: "center",
-              textAlign: "center",
-              width: "100%",
-            }}
-          >
-            <br />
-            <br />
-            <hr
-              style={{
-                textAlign: "center",
-                borderColor: "#815656",
-                borderWidth: 2,
-                borderStyle: "dashed",
-              }}
-            />
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <h1
-                style={{
-                  backgroundClip: "text",
-                  WebkitBackgroundClip: "text",
-                  color: "transparent",
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "center",
-                  backgroundSize: "cover",
-                  zIndex: 1,
-                  fontSize: "180px",
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1555231955-348aa2312e19?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-                  display: "inline-block",
-                  margin: "0 40px",
-                }}
-              >
-                <b>⟡ Courses ⟡</b>
-              </h1>
-            </div>
-            <hr
-              style={{
-                textAlign: "center",
-                borderColor: "#815656",
-                borderWidth: 2,
-                borderStyle: "dashed",
-              }}
-            />
-            <br />
-            <br />
-          </div>
-
-          <div
-            style={{
-              marginTop: "60px",
-              position: "relative",
-              zIndex: 0,
-              backgroundColor: "#fcd9df",
-              justifyContent: "center",
-              textAlign: "center",
-              width: "100%",
-              minHeight: "450px",
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          >
-            <div style= {{fontSize:"40px", color: "#815656"}}> these buttons dont actually work yet </div>
-            <br></br>
-            
-            <button
-              type="button"
-              ref={btnRef}
-              id="btnID"
-              style={{
-                fontSize: "30px",
-                textAlign: "center",
-                justifyContent: "center",
-                display: "block",
-                margin: "0 auto",
-                position: "relative",
-                padding: "10px 20px",
-                borderRadius: "5px",
-                backgroundColor: "#815656",
-                color: "white",
-                border: "none",
-                cursor: "pointer",
-              }}
-            ><Link to={'/courses'}>compsci</Link>
-            </button>
-            <button
-              type="button"
-              ref={btnRef}
-              id="btnID"
-              style={{
-                fontSize: "30px",
-                textAlign: "center",
-                justifyContent: "center",
-                display: "block",
-                margin: "0 auto",
-                position: "relative",
-                padding: "10px 20px",
-                borderRadius: "5px",
-                backgroundColor: "#815656",
-                color: "white",
-                border: "none",
-                cursor: "pointer",
-              }}
-            ><Link href="courses/artClass" to={'/courses'}>art</Link>
-            </button>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+                                    ))}
+                                </article>
+                            
+                        </div>
+                    </div>
+   
+   
+                       {/* Email and notification box */}
+                       <div style={{ textAlign: "left", backgroundColor: "#f89dac", width: "20%", position: "sticky", height:"100vh"}}>
+                           <div style={{border: "2px solid #815656",borderTop: "none", fontSize: "24px", color: "white", padding: "10px", backgroundColor: "#e88282ff" }}>Emails</div>
+                               <h3 style={{ fontSize: "24px", color: "white", paddingBlockEnd: "10px", paddingBlockStart: "10px" }}>
+                                   No new emails
+                               </h3>
+                           <div style={{ marginTop: "20px", fontSize: "24px", color: "white" ,border: "2px solid #815656", padding: "10px", backgroundColor: "#e88282ff" }}> Notifications</div>
+                               <h2 style={{ fontSize: "24px", color: "white", paddingBlockEnd: "30px", paddingBlockStart: "10px" }}>
+                                   No new Notifications
+   
+                               </h2>
+                       </div>
+                   </div>
+   
+               </section>
+              
+               
+           
+         
+         
+         </> 
+       );
 }
+
