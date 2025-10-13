@@ -33,6 +33,11 @@ function RouteComponent() {
 
     const { data, refetch, error, isFetching } = useQuery(assignmentsQueryOptions);
 
+     if (isFetching) return <div style={{fontSize:"40px", color: "#815656", alignContent:"center", alignItems:"center", textAlign:"center"}}>Loading...</div>;
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
    
    return (
            <>

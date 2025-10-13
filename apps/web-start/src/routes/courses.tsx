@@ -27,6 +27,12 @@ function RouteComponent() {
 
     const { data, refetch, error, isFetching } = useQuery(coursesQueryOptions);
 
+     if (isFetching) return <div style={{fontSize:"40px", color: "#815656", alignContent:"center", alignItems:"center", textAlign:"center"}}> Loading...</div>;
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
    
    return (
            <>
@@ -45,7 +51,7 @@ function RouteComponent() {
                </section>
    
                <section>
-                   {/* Content boxes with courses, announcements and assignments with duedates*/}
+                   {/* Content boxes with courses announcements and assignments with duedates*/}
                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginLeft: "30px", marginRight: "20px" }}>
                        <div style={{ display: "flex", flexDirection: "column", width: "76%" }}>
                            
