@@ -23,20 +23,35 @@ export function SidePanel() {
                     
                 }}
             >
-                <div style={{ padding: "50px"}}>
-                    <h3 style={{textAlign: "left", fontSize: "20px"}}>Welcome,</h3>
-                    <h2 style={{textAlign: "left",fontSize:"30px", marginBottom: "10px"}}>Selin Bacaz ! ✩</h2>
-                    <hr style={{backgroundColor: "#f8d8d1", border:"1px solid #f8d8d1"}}></hr>
-                    <br></br>
-                    <button style={{marginBottom: "20px"}}><Link to="/dashboard">Dashboard</Link></button>
-                    <br></br>
-                    <button style={{marginBottom: "20px"}}><Link to="/"> Home </Link></button>
-                    <br></br>
-                    <button style={{marginBottom: "20px"}}><Link to="/courses">Courses</Link></button>
-                    <br></br>
-                    <button style={{marginBottom: "20px"}}><Link to="/gradePage"> Grades </Link></button>
-                    <br></br>
+                <div style={{ padding: "50px" }}>
+                    {(() => {
+                        const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
+                        const makeStyle = (path: string) => ({
+                            marginBottom: "20px",
+                            padding: "8px 30%",
+                            borderRadius: "6px",
+                            backgroundColor: currentPath === path ? "#f8d8d16b" : "transparent",
+                            border: "none",
+                            cursor: "pointer",
+                        });
 
+                        return (
+                            <>
+                                <h3 style={{ textAlign: "left", fontSize: "20px" }}>Welcome,</h3>
+                                <h2 style={{ textAlign: "left", fontSize: "30px", marginBottom: "10px" }}>Selin Bacaz ! ✩</h2>
+                                <hr style={{ backgroundColor: "#f8d8d1", border: "1px solid #f8d8d1" }} />
+                                <br />
+                                <button style={makeStyle("/dashboard")}><Link to="/dashboard">Dashboard</Link></button>
+                                <br />
+                                <button style={makeStyle("/")}> <Link to="/"> Home </Link></button>
+                                <br />
+                                <button style={makeStyle("/courses")}><Link to="/courses">Courses</Link></button>
+                                <br />
+                                <button style={makeStyle("/gradePage")}><Link to="/gradePage"> Grades </Link></button>
+                                <br />
+                            </>
+                        );
+                    })()}
                 </div>
             </div>
             <div
