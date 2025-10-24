@@ -1,46 +1,38 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { SidePanel } from '../components/sidePanel';
-import { useMutation, useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { backendFetcher, mutateBackend, } from '../integrations/fetcher';
-import { CourseCreateIn, CourseOut, DeleteCourse } from '@repo/api/courses';
+import { CourseCreateIn, CourseOut, DeleteCourse, CourseUpdateIn } from '@repo/api/courses';
 import { CourseAdd } from '../components/CourseAdd';
 import { useState } from 'react';
 import { CourseDelete } from '../components/CourseDelete';
+import { CourseEdit } from '../components/CourseEdit';
+import { useApiMutation, useApiQuery } from '../integrations/api';
 
-interface Course {
+export interface Course {
   id: number;
   name: string;
 }
 
 export const Route = createFileRoute('/courses')({
   component: RouteComponent,
-  loader: ({ context: { queryClient } }) =>
-    queryClient.ensureQueryData(coursesQueryOptions),
 });
 
-const coursesQueryOptions = {
-  queryKey: ['courses'],
-  queryFn: backendFetcher<Array<Course>>('/courses'),
-  initialData: [],
-};
 
 function RouteComponent() {
-  const { data, refetch, error, isFetching } = useQuery(coursesQueryOptions);
+  console.log("Sanity check: courses/");
+  const { data, refetch, error, isFetching } = useApiQuery<Array<CourseOut>>(['courses'], '/courses');
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const mutation = useMutation({
-    mutationKey: ['deleteCourse'],
-    mutationFn: (payload: DeleteCourse) => {
-      return mutateBackend<DeleteCourse, CourseOut>('/courses', 'DELETE', payload);
-    }
-  })
+  const [EditisOpen, EditsetIsOpen] = useState<boolean>(false);
+  const courses = data ?? [];
+
+  const mutation = useApiMutation<DeleteCourse, CourseOut>({endpoint: () => ({path: `/courses`, method: 'DELETE'}),});
   
   
     const handleToggle = () => {
       setIsOpen(!isOpen);
     };
-    const handleToggleDelete = (courseId: number) => {
-      mutation.mutate({ id: courseId });
-    };
+    
 
 
   if (isFetching)
@@ -187,7 +179,7 @@ function RouteComponent() {
                   boxSizing: 'border-box',
                 }}
               >
-                {data.map((course) => (
+                {courses.map((course) => (
                   <div
                     key={course.id}
                     style={{
@@ -269,12 +261,7 @@ function RouteComponent() {
                           <button
                             onClick={() =>
                               mutation.mutate(
-                                { id: course.id },
-                                {
-                                  onSuccess: () => {
-                                    refetch();
-                                  },
-                                }
+                                { id: course.id }
                               )
                             }
                             className="bg-transparent hover:bg-yellow-950/20"
@@ -395,6 +382,8 @@ function RouteComponent() {
           </div>
         </div>
       </section>
+
+      {/**{EditisOpen && <CourseEdit isOpen={EditisOpen} setIsOpen={EditsetIsOpen} setEditingCourse={setEditingCourse} editingCourse={editingCourse}/>}**/}
 
       {isOpen && <CourseAdd isOpen={isOpen} setIsOpen={setIsOpen}/>}
     </>

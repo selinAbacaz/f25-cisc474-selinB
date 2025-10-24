@@ -1,9 +1,8 @@
 
 import "./CourseButtons.css";
-import React, { useState } from 'react';
-import { mutateBackend } from "../integrations/fetcher";
-import { useMutation } from "@tanstack/react-query";
+import { useState } from 'react';
 import { CourseCreateIn, CourseOut } from '@repo/api/courses';
+import { useApiMutation } from "../integrations/api";
 
 interface CourseAddProps {
   isOpen: boolean;
@@ -11,21 +10,7 @@ interface CourseAddProps {
 }
 
 export function CourseAdd( {isOpen, setIsOpen}: CourseAddProps) {
-
-    
-
-
-    const mutation = useMutation({
-        mutationKey: ['addCourse'],
-        mutationFn: (newCourse: CourseCreateIn) => {
-
-            return mutateBackend<CourseCreateIn, CourseOut>(
-                '/courses',
-                'POST',
-                newCourse
-            );
-        },
-    });
+    const mutation = useApiMutation<CourseCreateIn, CourseOut>({endpoint: () => ({path: '/courses', method: 'POST'})});
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -177,7 +162,6 @@ export function CourseAdd( {isOpen, setIsOpen}: CourseAddProps) {
                                         setIsOpen(false);
                                         // Full page reload:
                                         window.location.reload();
-                                        // Alternatively, use react-query invalidateQueries or router navigation instead of reload.
                                     },
                                 }
                             );

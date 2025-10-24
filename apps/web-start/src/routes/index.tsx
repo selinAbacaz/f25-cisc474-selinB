@@ -1,6 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { SideGallery } from '../components/SideGallery';
 import { SidePanel } from '../components/sidePanel';
+import LogoutButton from '../components/LogoutButton';
+import LoginButton from '../components/LoginButton';
 
 
 export const Route = createFileRoute('/')({
@@ -8,6 +10,8 @@ export const Route = createFileRoute('/')({
 });
 
 function RouteComponent() {
+
+    console.log("Sanity check: index");
    
     return (
         <>
@@ -17,6 +21,8 @@ function RouteComponent() {
                 <header className="flex-row" style={{minHeight: "80px", backgroundColor: "#815656",alignContent: "center", }}>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", alignContent: "center"}}>
                         <h1 style={{ fontSize: "36px", color: "white" }}>Something something</h1>
+                        <LoginButton></LoginButton>
+                        <LogoutButton></LogoutButton>
                         <div style={{minHeight: "60px", minWidth: "60px",backgroundImage: "url(/Images/chihiro.jpg)" ,backgroundSize:"cover",display:"flex", marginRight:"2%", borderRadius:"100%" }}></div>
                         
                     </div>

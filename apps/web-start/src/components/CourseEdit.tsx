@@ -1,46 +1,43 @@
-
 import "./CourseButtons.css";
-import React, { useState } from 'react';
-import { mutateBackend } from "../integrations/fetcher";
+import React, { useState } from "react";
+import { backendFetcher, mutateBackend } from "../integrations/fetcher";
 import { useMutation } from "@tanstack/react-query";
-import { CourseCreateIn, CourseOut } from '@repo/api/courses';
+import { Course } from "../routes/courses";
+import { CourseCreateIn, CourseOut, DeleteCourse, CourseUpdateIn } from '@repo/api/courses';
 
-interface CourseAddProps {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
+interface CourseEditProps {
+    isOpen: boolean;
+    setIsOpen: (isOpen: boolean) => void;
+    setEditingCourse: (course: Course) => void;
+    editingCourse?: Course | null;
 }
 
-export function CourseAdd( {isOpen, setIsOpen}: CourseAddProps) {
+export function CourseEdit({ isOpen, setIsOpen, setEditingCourse, editingCourse }: CourseEditProps) {
+    const [selectedCourse, setSelectedCourse] = useState<string>(editingCourse?.name ?? "");
 
 
     const mutation = useMutation({
-        mutationKey: ['addCourse'],
-        mutationFn: (newCourse: CourseCreateIn) => {
-
-            return mutateBackend<CourseCreateIn, CourseOut>(
-                '/courses',
-                'POST',
-                newCourse
-            );
-        },
+        mutationKey: ["editCourse"],
+        mutationFn: (payload: CourseUpdateIn) =>
+            
+        mutateBackend<CourseUpdateIn, void>("/courses", "UPDATE", payload),
     });
+    
+    const handleToggle = () => {
+        setIsOpen(!isOpen);
+    };
 
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
-
-    const [newCourseName, setNewCourseName] = useState<string>("");
+    
+    if (!isOpen) return null;
 
     return (
-
-
-    <div className="inset-0 fixed w-lvw h-lvh flex items-center justify-center z-2000">
-        <div
+        <div className="inset-0 fixed w-lvw h-lvh flex items-center justify-center z-2000">
+           <div
             className="p-6 rounded shadow-lg"
             style={{ minHeight: "50%", minWidth: "40%", backgroundColor: '#f8d8d1',border: '2px, solid, #815656',}}
         >
             <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-bold" style={{color: "#815656"}}>Add Course</h2>
+                <h2 className="text-xl font-bold" style={{color: "#815656"}}>Edit Course</h2>
                 <button
                     onClick={handleToggle}
                     aria-label="Close"
@@ -58,97 +55,26 @@ export function CourseAdd( {isOpen, setIsOpen}: CourseAddProps) {
             </div>
 
             <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    const form = e.currentTarget as HTMLFormElement;
-                    const fd = new FormData(form);
-                    const payload = {
-                        name: fd.get("courseName") as string | null,
-                        code: fd.get("courseCode") as string | null,
-                        instructor: fd.get("instructor") as string | null,
-                        credits: fd.get("credits") as string | null,
-                        description: fd.get("description") as string | null,
-                    };
-                    // TODO: replace console.log with API call / parent callback
-                    console.log("Course submit payload:", payload);
-                    setIsOpen(false);
-                }}
+                
                 className="space-y-4"
             >
                 <div className="flex flex-col">
                     <label htmlFor="courseName" className="mb-1 font-medium" style={{color: "#815656"}}>
-                        Course Name
+                        Change Course Name:
                     </label>
                     <input
                         id="courseName"
                         name="courseName"
                         type="text"
-                        placeholder="Add Course Name here"
+                        placeholder="Write new Course Name here"
                         required
                         className="p-2 border rounded"
-                        onChange={(e) => setNewCourseName(e.target.value)}>
+                        onChange={(e) => setSelectedCourse(e.target.value)}>
 
                     </input>
                 </div>
-            {/* 
-                <div className="grid grid-cols-2 gap-4">
-                    <div className="flex flex-col">
-                        <label htmlFor="courseCode" className="mb-1 font-medium">
-                            Course Code
-                        </label>
-                        <input
-                            id="courseCode"
-                            name="courseCode"
-                            type="text"
-                            placeholder="CISC 474"
-                            required
-                            className="p-2 border rounded"
-                        />
-                    </div>
+          
 
-                    <div className="flex flex-col">
-                        <label htmlFor="credits" className="mb-1 font-medium">
-                            Credits
-                        </label>
-                        <input
-                            id="credits"
-                            name="credits"
-                            type="number"
-                            min={0}
-                            step={1}
-                            placeholder="3"
-                            className="p-2 border rounded"
-                        />
-                    </div>
-                </div>
-
-                <div className="flex flex-col">
-                    <label htmlFor="instructor" className="mb-1 font-medium">
-                        Instructor
-                    </label>
-                    <input
-                        id="instructor"
-                        name="instructor"
-                        type="text"
-                        placeholder="Dr. Smith"
-                        className="p-2 border rounded"
-                    />
-                </div>
-
-                <div className="flex flex-col">
-                    <label htmlFor="description" className="mb-1 font-medium">
-                        Description
-                    </label>
-                    <textarea
-                        id="description"
-                        name="description"
-                        placeholder="Brief course description..."
-                        rows={4}
-                        className="p-2 border rounded"
-                    />
-                </div>
-
-                */}
 
                 <div className="flex justify-end gap-3 mt-2">
                     <button
@@ -165,13 +91,9 @@ export function CourseAdd( {isOpen, setIsOpen}: CourseAddProps) {
                     >
                         Cancel
                     </button>
-                    <button onClick={()=> {
-                        mutation.mutate({
-                            name: newCourseName,
-
-
-                    })}  }
-                        type="submit"
+                        <button
+                        type="button"
+                        
                         style={{
                             padding: "8px 12px",
                             borderRadius: 6,
@@ -183,13 +105,9 @@ export function CourseAdd( {isOpen, setIsOpen}: CourseAddProps) {
                     >
                         Save Course
                     </button>
-                </div>
-            </form>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-      
-
-
-
     );
 }
