@@ -149,6 +149,8 @@ function RouteComponent() {
                 }}
               >
                 <button
+                className="bg-MyCream hover:bg-PressCream rounded-md p-5 transform transition-transform duration-300 ease-in-out 
+               hover:-translate-y-1"
                   onClick={() => refetch()}
                   style={{
                     marginBottom: '20px',
@@ -157,7 +159,7 @@ function RouteComponent() {
                     borderRadius: '5px',
                     padding: '10px',
                     color: '#815656',
-                    backgroundColor: '#f8d8d1',
+                    
                     
                   }}
                 >
@@ -165,7 +167,8 @@ function RouteComponent() {
                 </button>
 
                 <button
-                className="bg-cream hover:bg-yellow-950/10 rounded-md p-5"
+                className="bg-MyCream hover:bg-PressCream rounded-md p-5 transform transition-transform duration-300 ease-in-out 
+               hover:-translate-y-1"
                   onClick={handleToggle}
                   style={{
                     marginBottom: '20px',
@@ -174,7 +177,6 @@ function RouteComponent() {
                     borderRadius: '5px',
                     padding: '10px',
                     color: '#815656',
-                    backgroundColor: '#f8d8d1',
                     marginLeft: '10px',
                   }}
                 >
@@ -201,6 +203,8 @@ function RouteComponent() {
               >
                 {courses.map((course) => (
                   <div
+                  className=" transform transition-transform duration-300 ease-in-out 
+                    hover:-translate-y-1"
                     key={course.id}
                     style={{
                       position: 'relative',
