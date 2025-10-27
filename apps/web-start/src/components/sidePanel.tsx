@@ -31,25 +31,26 @@ export function SidePanel() {
                             padding: "8px 30%",
                             borderRadius: "6px",
                             backgroundColor: currentPath === path ? "#f8d8d16b" : "transparent",
+                            color: currentPath === path ? "#815656" : "#f8d8d1",
                             border: "none",
                             cursor: "pointer",
                         });
 
                         return (
-                            <>
+                            <div>
                                 <h3 style={{ textAlign: "left", fontSize: "20px" }}>Welcome,</h3>
                                 <h2 style={{ textAlign: "left", fontSize: "30px", marginBottom: "10px" }}>Selin Bacaz ! ✩</h2>
                                 <hr style={{ backgroundColor: "#f8d8d1", border: "1px solid #f8d8d1" }} />
                                 <br />
-                                <button style={makeStyle("/dashboard")}><Link to="/dashboard">Dashboard</Link></button>
+                                <button className="transform transition-transform duration-300 ease-in-out hover:-translate-y-1" style={makeStyle("/dashboard")}><Link to="/dashboard">Dashboard</Link></button>
                                 <br />
-                                <button style={makeStyle("/")}> <Link to="/"> Home </Link></button>
+                                <button className="transform transition-transform duration-300 ease-in-out hover:-translate-y-1" style={makeStyle("/")}> <Link to="/"> Home </Link></button>
                                 <br />
-                                <button style={makeStyle("/courses")}><Link to="/courses">Courses</Link></button>
+                                <button className="transform transition-transform duration-300 ease-in-out hover:-translate-y-1" style={makeStyle("/courses")}><Link to="/courses">Courses</Link></button>
                                 <br />
-                                <button style={makeStyle("/gradePage")}><Link to="/gradePage"> Grades </Link></button>
+                                <button className="transform transition-transform duration-300 ease-in-out hover:-translate-y-1" style={makeStyle("/gradePage")}><Link to="/gradePage"> Grades </Link></button>
                                 <br />
-                            </>
+                            </div>
                         );
                     })()}
                 </div>

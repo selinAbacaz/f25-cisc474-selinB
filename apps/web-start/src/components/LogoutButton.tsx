@@ -8,14 +8,10 @@ const LogoutButton = () => {
       const [active, setActive] = useState(false);
   
       const style: React.CSSProperties = {
-          background: '#f8d8d1',
-          color: 'black',
-          border: 'none',
+          
+          color: "#815656",
           padding: '10px 16px',
           borderRadius: 10,
-          boxShadow: hover
-              ? '0 10px 25px rgba(99,102,241,0.18)'
-              : '0 6px 12px rgba(16,24,40,0.06)',
           transform: active ? 'translateY(1px) scale(0.996)' : hover ? 'translateY(-3px) scale(1.01)' : 'none',
           cursor: 'pointer',
           fontSize: 15,
@@ -24,12 +20,11 @@ const LogoutButton = () => {
           display: 'inline-flex',
           alignItems: 'center',
           gap: 10,
-          userSelect: 'none',
-          outline: 'none',
       };
 
   return (
     <button
+    className="bg-MyCream hover:bg-PressCream rounded-md p-5"
     aria-label="Log in"
             style={style}
             onMouseEnter={() => setHover(true)}

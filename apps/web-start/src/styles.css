@@ -13,3 +13,10 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
 }
+
+@theme {
+      --color-MyCream: #f8d8d1;
+      --color-PressCream: #eab4a7;
+      
+
+}
