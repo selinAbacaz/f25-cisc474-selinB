@@ -33,6 +33,7 @@ export function SideGallery() {
             
             <Link href="courses/compsciClass">
                 <button
+                className="bg-MyBrown hover:bg-PressBrown rounded-md p-5"
                     type="button"
                     ref={btnRef}
                     id="btnID"
@@ -43,7 +44,7 @@ export function SideGallery() {
                     position: "relative",
                     padding: "10px",
                     borderRadius: "5px",
-                    backgroundColor: "#815656",
+                    
                     color: "white",
                     border: "none",
                     cursor: "pointer",
