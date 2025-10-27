@@ -1,27 +1,23 @@
 import "./CourseButtons.css";
 import React, { useState } from "react";
 import { backendFetcher, mutateBackend } from "../integrations/fetcher";
-import { useMutation } from "@tanstack/react-query";
+import { useApiMutation } from "../integrations/api";
 import { Course } from "../routes/courses";
 import { CourseCreateIn, CourseOut, DeleteCourse, CourseUpdateIn } from '@repo/api/courses';
 
 interface CourseEditProps {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
-    setEditingCourse: (course: Course) => void;
-    editingCourse?: Course | null;
+    OneCourse: Course;
 }
 
-export function CourseEdit({ isOpen, setIsOpen, setEditingCourse, editingCourse }: CourseEditProps) {
-    const [selectedCourse, setSelectedCourse] = useState<string>(editingCourse?.name ?? "");
+export function CourseEdit({ isOpen, setIsOpen, OneCourse }: CourseEditProps) {
+    let setSelectedCourse: string;
 
 
-    const mutation = useMutation({
-        mutationKey: ["editCourse"],
-        mutationFn: (payload: CourseUpdateIn) =>
-            
-        mutateBackend<CourseUpdateIn, void>("/courses", "UPDATE", payload),
-    });
+    const mutation = useApiMutation<CourseUpdateIn, CourseOut>({endpoint: () => ({path: '/courses', method: 'PUT'})});
+      const [newName, setNewName] = useState<string>("");
+
     
     const handleToggle = () => {
         setIsOpen(!isOpen);
@@ -69,7 +65,7 @@ export function CourseEdit({ isOpen, setIsOpen, setEditingCourse, editingCourse 
                         placeholder="Write new Course Name here"
                         required
                         className="p-2 border rounded"
-                        onChange={(e) => setSelectedCourse(e.target.value)}>
+                        onChange={(e) => setNewName(e.target.value)}>
 
                     </input>
                 </div>
@@ -93,8 +89,20 @@ export function CourseEdit({ isOpen, setIsOpen, setEditingCourse, editingCourse 
                     </button>
                         <button
                         type="button"
+                        onClick={() =>
+                            mutation.mutate( {id: OneCourse.id, name: newName}, 
+                                {
+                                    onSuccess: () => {
+                                        setIsOpen(false);
+                                        // Full page reload:
+                                        window.location.reload();
+                                    },
+                                } )
+                        
+                        }
                         
                         style={{
+                            
                             padding: "8px 12px",
                             borderRadius: 6,
                             background: "#815656",

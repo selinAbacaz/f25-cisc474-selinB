@@ -19,11 +19,29 @@ export const Route = createFileRoute('/courses')({
 });
 
 
+
+
+
 function RouteComponent() {
-  console.log("Sanity check: courses/");
+  
+  const [newCourse, setNewCourse] = useState<Course>({id:0, name: ""});
+
+
+  
+  function forEditCourse(course: Course) {
+    setNewCourse(course);
+    EdithandleToggle();
+
+  }
+
+
+  const [EditisOpen, EditsetIsOpen] = useState<boolean>(false);
+  const EdithandleToggle = () => {
+        EditsetIsOpen(!EditisOpen);
+      };
+
   const { data, refetch, error, isFetching } = useApiQuery<Array<CourseOut>>(['courses'], '/courses');
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [EditisOpen, EditsetIsOpen] = useState<boolean>(false);
   const courses = data ?? [];
 
   const mutation = useApiMutation<DeleteCourse, CourseOut>({endpoint: () => ({path: `/courses`, method: 'DELETE'}),});
@@ -32,6 +50,7 @@ function RouteComponent() {
     const handleToggle = () => {
       setIsOpen(!isOpen);
     };
+
     
 
 
@@ -139,13 +158,14 @@ function RouteComponent() {
                     padding: '10px',
                     color: '#815656',
                     backgroundColor: '#f8d8d1',
+                    
                   }}
                 >
                   Refresh Courses
                 </button>
 
                 <button
-                
+                className="bg-cream hover:bg-yellow-950/10 rounded-md p-5"
                   onClick={handleToggle}
                   style={{
                     marginBottom: '20px',
@@ -243,7 +263,10 @@ function RouteComponent() {
                           }}
                         >
                           <button 
-                          
+                            onClick={() =>
+                              forEditCourse(course)
+                            }
+                            
                             className="bg-transparent hover:bg-yellow-950/20"
                             style={{
                               border: '2px solid #815656',
@@ -253,6 +276,7 @@ function RouteComponent() {
                               cursor: 'pointer',
                             }}
                           >
+                          
                             Edit
 
                           </button>
@@ -261,7 +285,12 @@ function RouteComponent() {
                           <button
                             onClick={() =>
                               mutation.mutate(
-                                { id: course.id }
+                                { id: course.id },
+                                {
+                                  onSuccess: () => {
+                                    refetch();
+                                  },
+                                }
                               )
                             }
                             className="bg-transparent hover:bg-yellow-950/20"
@@ -386,6 +415,7 @@ function RouteComponent() {
       {/**{EditisOpen && <CourseEdit isOpen={EditisOpen} setIsOpen={EditsetIsOpen} setEditingCourse={setEditingCourse} editingCourse={editingCourse}/>}**/}
 
       {isOpen && <CourseAdd isOpen={isOpen} setIsOpen={setIsOpen}/>}
+      {EditisOpen && <CourseEdit isOpen={EditisOpen} setIsOpen={EditsetIsOpen} OneCourse={ newCourse }/>}
     </>
   );
 }
