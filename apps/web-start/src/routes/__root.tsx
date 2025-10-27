@@ -42,6 +42,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  console.log("Santiy cehck getRouter");
   return (
     <html lang="en">
       <head>

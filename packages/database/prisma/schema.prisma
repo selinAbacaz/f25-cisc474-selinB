@@ -14,16 +14,18 @@ generator client {
 
 model User {
   id        Int      @id @default(autoincrement())
-  email     String   @unique
+  email     String?   @unique
   Firstname String?
   Lastname  String?
   role      Role     @default(USER)
-  pronouns  String
+  pronouns  String?
   Profile   Profile?
 
   submission submission[]
 
   assignment assignment[]
+
+  Authentication Authentication[]
 }
 
 model Profile {
@@ -45,6 +47,16 @@ model course {
   
 
 }
+
+
+model Authentication {
+  id         Int @id @default(autoincrement())
+  user       User   @relation(fields: [userId], references: [id])
+  userId     Int
+  provider   String
+  providerId String
+}
+
 
 model assignment {
   id         Int        @id @default(autoincrement())
